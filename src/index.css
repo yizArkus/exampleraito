@@ -1,0 +1,25 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  --color-raito-bg: #020617;
+  --color-raito-surface: #0f172a;
+  --color-raito-brand: #22d3ee;
+  --color-raito-brand-hover: #67e8f9;
+  --color-raito-brand-active: #06b6d4;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background-color: var(--color-raito-bg);
+  color: #f8fafc;
+  -webkit-font-smoothing: antialiased;
+}
