@@ -1,17 +1,15 @@
-# AWS Amplify Hosting — React + Vite SPA
-# Salida: dist/ (Vite). Documentación: https://docs.aws.amazon.com/amplify/latest/userguide/build-settings.html
+# AWS Amplify Hosting — React + Vite SPA → dist/
+# https://docs.aws.amazon.com/amplify/latest/userguide/build-settings.html
 
 version: 1
 frontend:
   phases:
     preBuild:
       commands:
-        # Node LTS (Amplify build image incluye nvm)
         - nvm install 20
         - nvm use 20
         - node -v
         - npm ci
-        # Calidad (falla el build si hay errores)
         - npm run lint
         - npm run type-check
     build:
@@ -25,7 +23,6 @@ frontend:
     paths:
       - node_modules/**/*
 
-# Cabeceras HTTP opcionales (ajusta según política de seguridad)
 customHeaders:
   - pattern: '**/*'
     headers:

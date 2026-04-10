@@ -2,8 +2,8 @@ import { useMutation } from '@tanstack/react-query';
 import { useId } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { IconoManoFlecha } from '../components/icons/IconoManoFlecha';
 import { loginRequest, type LoginCredentials } from '../api/auth';
+import { HandArrowIcon } from '../components/icons/HandArrowIcon';
 
 const EMAIL_ID = 'login-email';
 const PASSWORD_ID = 'login-password';
@@ -36,7 +36,7 @@ export function LoginPage() {
     loginMutation.isError && loginMutation.error instanceof Error
       ? loginMutation.error.message
       : loginMutation.isError
-        ? 'No se pudo iniciar sesión. Inténtalo de nuevo.'
+        ? 'Sign-in failed. Please try again.'
         : null;
 
   return (
@@ -44,13 +44,13 @@ export function LoginPage() {
       <div className="w-full max-w-[400px]">
         <header className="mb-10 flex flex-col items-center text-center">
           <div className="mb-8 flex items-center gap-3" aria-hidden="true">
-            <IconoManoFlecha size={44} className="shrink-0" />
+            <HandArrowIcon size={44} className="shrink-0" />
             <span className="text-2xl font-bold tracking-tight text-white">RAITO</span>
             <span className="text-2xl font-semibold tracking-tight text-raito-brand">Admin</span>
           </div>
 
-          <h1 className="text-3xl font-bold tracking-tight text-white">Iniciar sesión</h1>
-          <p className="mt-2 text-base text-slate-400">Accede al panel de administración</p>
+          <h1 className="text-3xl font-bold tracking-tight text-white">Sign in</h1>
+          <p className="mt-2 text-base text-slate-400">Access the administration panel</p>
         </header>
 
         <form
@@ -74,7 +74,7 @@ export function LoginPage() {
               htmlFor={EMAIL_ID}
               className="text-xs font-medium uppercase tracking-wide text-slate-400"
             >
-              Correo electrónico
+              Email
             </label>
             <input
               id={EMAIL_ID}
@@ -86,10 +86,10 @@ export function LoginPage() {
               aria-describedby={errors.email ? `${EMAIL_ID}-error` : undefined}
               className="min-h-[44px] rounded-md border border-slate-800 bg-raito-surface px-3 py-2.5 text-base text-slate-100 placeholder:text-slate-500 focus-visible:border-raito-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-raito-brand focus-visible:ring-offset-2 focus-visible:ring-offset-raito-bg"
               {...register('email', {
-                required: 'Introduce tu correo electrónico.',
+                required: 'Email is required.',
                 pattern: {
                   value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                  message: 'Introduce un correo electrónico válido.',
+                  message: 'Enter a valid email address.',
                 },
               })}
             />
@@ -105,7 +105,7 @@ export function LoginPage() {
               htmlFor={PASSWORD_ID}
               className="text-xs font-medium uppercase tracking-wide text-slate-400"
             >
-              Contraseña
+              Password
             </label>
             <input
               id={PASSWORD_ID}
@@ -116,8 +116,8 @@ export function LoginPage() {
               aria-describedby={errors.password ? `${PASSWORD_ID}-error` : undefined}
               className="min-h-[44px] rounded-md border border-slate-800 bg-raito-surface px-3 py-2.5 text-base text-slate-100 placeholder:text-slate-500 focus-visible:border-raito-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-raito-brand focus-visible:ring-offset-2 focus-visible:ring-offset-raito-bg"
               {...register('password', {
-                required: 'Introduce tu contraseña.',
-                minLength: { value: 1, message: 'Introduce tu contraseña.' },
+                required: 'Password is required.',
+                minLength: { value: 1, message: 'Password is required.' },
               })}
             />
             {errors.password ? (
@@ -133,7 +133,7 @@ export function LoginPage() {
             aria-busy={loginMutation.isPending}
             className="min-h-[48px] w-full rounded-md bg-raito-brand px-4 py-3 text-center text-base font-semibold text-slate-950 transition-colors hover:bg-raito-brand-hover active:bg-raito-brand-active disabled:cursor-not-allowed disabled:opacity-70"
           >
-            {loginMutation.isPending ? 'Iniciando sesión…' : 'Iniciar sesión'}
+            {loginMutation.isPending ? 'Signing in…' : 'Sign in'}
           </button>
         </form>
       </div>
